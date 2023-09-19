@@ -3,21 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="author" content="Roki Miftah Kamaludin" />
-    <meta name="description" content="Realty" />
-    <meta name="keywords" content="Realty" />
+    <meta name="description" content="YT Channel Find" />
+    <meta name="keywords" content="YT Channel Find" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon"
           href="https://cdn.rokimiftah.id/projects/django/findyt/favicon.ico"
           type="image/x-icon" />
     <link rel="stylesheet"
           href="https://cdn.rokimiftah.id/projects/django/findyt/css/bulma.css">
-    <title>
-      {% block title %}
-      {% endblock title %}
-    </title>
+    <title>YT Channel Find</title>
   </head>
-  <body>
-    {% block content %}
-    {% endblock content %}
-  </body>
+  <body>{% include "findyt/channels.html" %}</body>
 </html>
