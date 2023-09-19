@@ -1,0 +1,51 @@
+<div id="channel-section">
+  <section class="section">
+    <div class="container">
+      <form hx-get="{% url "search-channel" %}" hx-target="#search-results">
+        <div class="field has-addons">
+          <div class="control is-expanded">
+            <input type="text" class="input" name="q" placeholder="Find a Channel">
+          </div>
+          <div class="control">
+            <button class="button is-info">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <div id="search-results"></div>
+  <section class="modal-card-body">
+    <div class="container">
+      {% if channels %}
+        {% for channel in channels %}
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-64x64">
+                <img src="{{ channel.thumbnail_url }}"
+                     width="64px"
+                     height="64px"
+                     alt="Channel Thumbnail">
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>{{ channel.name }}</strong>
+                  <br>
+                  {{ channel.description }}
+                </p>
+              </div>
+            </div>
+            <div class="media-right">
+              <button class="delete"></button>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <section>
+          No Channel Found
+        </section>
+      {% endif %}
+    </div>
+  </section>
+</div>
