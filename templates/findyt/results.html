@@ -1,0 +1,27 @@
+{% load humanize %}
+<div id="results-section">
+  <section>
+    <div class="columns is-centered mt-5">
+      <button class="button is-primary"
+              hx-get="{% url "generate" %}"
+              hx-target="#results-section">Generate</button>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>Channel Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in results %}
+            <td>Pretty Printed</td>
+            {% comment %} </tr> {% endcomment %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

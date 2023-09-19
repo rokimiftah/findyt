@@ -3,13 +3,15 @@ from django.conf import settings
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from findyt.models import Channel
+from findyt.models import Channel, Video
+from findyt.tasks import get_video_stats
 
 
 # Create your views here.
 def index(request):
     channels = Channel.objects.all()
-    context = {"channels": channels}
+    results = Video.objects.all()
+    context = {"channels": channels, "results": results}
     return render(request, "findyt/index.html", context)
 
 
@@ -37,3 +39,9 @@ def add_channel(request, channel_id):
     channels = Channel.objects.all()
     context = {"channels": channels}
     return render(request, "findyt/channels.html", context)
+
+
+def generate(request):
+    task = get_video_stats.delay()  # type: ignore
+    context = {"task_id": task.task_id, "value": 0}
+    return render(request, "findyt/progress-bar.html", context)
